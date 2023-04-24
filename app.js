@@ -1,5 +1,5 @@
 const API_KEY = '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';
-const BASE_URL = 'https://api.openai.com/v1/completions';
+const BASE_URL = 'https://api.openai.com/v1/chat/completions';
 
 
 async function fetchData() {
@@ -10,10 +10,17 @@ async function fetchData() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            model: 'text-davinci-003',
-            prompt: "hello, how are you?",
-            max_tokens: 7,
-            temperature: 0,
+            model: 'gpt-3.5-turbo',
+            messages: [
+                {
+                    role: "user",
+                    content: 'Hello!'
+                },
+                {
+                    role: "user",
+                    content: 'How are you?'
+                },
+            ],
         })
     })
     const data = await resp.json()
